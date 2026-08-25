@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthcare Analytics Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">+</div>
+        <div>
+          <div class="brand-title">Healthcare</div>
+          <div class="brand-subtitle">Analytics</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-page="overview"><span>▦</span> Overview</button>
+        <button class="nav-item" data-page="insights"><span>◈</span> Patient Insights</button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="mini-label">WEB VERSION</div>
+        <div class="mini-text">HTML · CSS · JavaScript · Chart.js</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h1 id="pageTitle">Healthcare Overview</h1>
+          <p id="pageSubtitle">Hospital admissions, patients and billing performance</p>
+        </div>
+        <div class="top-actions">
+          <button class="reset-btn" id="resetFilters">Reset filters</button>
+        </div>
+      </header>
+
+      <section class="filters">
+        <div class="filter-group">
+          <label for="yearFilter">Year</label>
+          <select id="yearFilter"><option value="all">All years</option></select>
+        </div>
+        <div class="filter-group">
+          <label for="genderFilter">Gender</label>
+          <select id="genderFilter"><option value="all">All genders</option></select>
+        </div>
+        <div class="filter-group">
+          <label for="admissionFilter">Admission type</label>
+          <select id="admissionFilter"><option value="all">All admission types</option></select>
+        </div>
+        <div class="filter-group">
+          <label for="insuranceFilter">Insurance provider</label>
+          <select id="insuranceFilter"><option value="all">All providers</option></select>
+        </div>
+      </section>
+
+      <section id="overviewPage" class="page active-page">
+        <div class="kpi-grid">
+          <article class="kpi-card">
+            <div class="kpi-label">Average length of stay</div>
+            <div class="kpi-value" id="avgStay">—</div>
+            <div class="kpi-note">days</div>
+          </article>
+          <article class="kpi-card">
+            <div class="kpi-label">Total patients</div>
+            <div class="kpi-value" id="totalPatients">—</div>
+            <div class="kpi-note">selected records</div>
+          </article>
+          <article class="kpi-card">
+            <div class="kpi-label">Total billing amount</div>
+            <div class="kpi-value" id="totalBilling">—</div>
+            <div class="kpi-note">selected records</div>
+          </article>
+          <article class="kpi-card">
+            <div class="kpi-label">Readmissions</div>
+            <div class="kpi-value" id="readmissions">—</div>
+            <div class="kpi-note">estimated from record status</div>
+          </article>
+        </div>
+
+        <div class="chart-grid">
+          <article class="panel wide">
+            <div class="panel-head"><h2>Department Wise Patient Count</h2></div>
+            <canvas id="departmentChart"></canvas>
+          </article>
+          <article class="panel wide">
+            <div class="panel-head"><h2>Month Wise Patient Count</h2></div>
+            <canvas id="monthlyChart"></canvas>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><h2>Admissions By Patient Count</h2></div>
+            <canvas id="admissionChart"></canvas>
+          </article>
+          <article class="panel wide">
+            <div class="panel-head"><h2>Billing Amount by Insurance Provider</h2></div>
+            <canvas id="insuranceChart"></canvas>
+          </article>
+        </div>
+      </section>
+
+      <section id="insightsPage" class="page">
+        <div class="chart-grid">
+          <article class="panel wide">
+            <div class="panel-head"><h2>Billing by Department</h2></div>
+            <canvas id="deptBillingChart"></canvas>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><h2>Doctor VS Patient Count</h2></div>
+            <canvas id="doctorChart"></canvas>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><h2>Admissions by Type Over Time</h2></div>
+            <canvas id="admissionTrendChart"></canvas>
+          </article>
+          <article class="panel wide">
+            <div class="panel-head"><h2>Department Wise Readmissions</h2></div>
+            <canvas id="readmissionDeptChart"></canvas>
+          </article>
+          <article class="panel wide">
+            <div class="panel-head"><h2>Top 10 Medical Conditions by Billing Amount</h2></div>
+            <canvas id="conditionChart"></canvas>
+          </article>
+        </div>
+      </section>
+
+      <footer>
+        <span>Healthcare Analytics web recreation</span>
+        <span id="recordCount">0 records</span>
+      </footer>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
